@@ -26,9 +26,9 @@
     "flarum-extension": {
       "title": "Flarum Wechat Share",
       "icon": {
-        "name": "",
-        "backgroundColor": "",
-        "color": ""
+        "name": "fab fa-share-alt-square",
+        "backgroundColor": "#51c332",
+        "color": "#fff"
       }
     },
     "flagrow": {
