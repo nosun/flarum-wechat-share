@@ -1,0 +1,38 @@
+{
+  "name": "nosun/flarum-wechat-share",
+  "description": "wechat share for flarum post",
+  "keywords": [
+    "flarum"
+  ],
+  "type": "flarum-extension",
+  "license": "MIT",
+  "require": {
+    "flarum/core": "^0.1.0-beta.8",
+    "overtrue/laravel-wechat": "^5.0"
+  },
+  "authors": [
+    {
+      "name": "nosun",
+      "email": "nosun2008@126.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Nosun\\WechatShare\\": "src/"
+    }
+  },
+  "extra": {
+    "flarum-extension": {
+      "title": "Flarum Wechat Share",
+      "icon": {
+        "name": "",
+        "backgroundColor": "",
+        "color": ""
+      }
+    },
+    "flagrow": {
+      "discuss": ""
+    }
+  }
+}
