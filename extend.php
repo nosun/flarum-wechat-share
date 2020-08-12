@@ -17,26 +17,28 @@ use Flarum\Frontend\Document;
 
 $config = app('flarum.config');
 $app = new OfficialAccount\Application($config['wechat']);
+$imageUrl = $config['wechat']['share_logo'];
 $jsConfig = $app->jssdk->buildConfig(['updateAppMessageShareData', 'updateTimelineShareData']);
 
 return [
 
     (new Extend\Frontend('forum'))
-        ->content(function (Document $document) use ($jsConfig) {
+        ->content(function (Document $document) use ($jsConfig, $imageUrl) {
             $document->head[] = '<script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="text/javascript" charset="utf-8" ></script>';
             $document->head[] = '<script> wx.config(' . $jsConfig . ')</script>';
             $document->head[] = "<script>
 
        var title = document.title;
        var url = window.location.href;
-       var text = window.getSelection();
+       var text = document.querySelector('meta[name=description]').content;
+       var imgUrl = '" . $imageUrl . "'
 
         wx.ready(function () {
             wx.updateAppMessageShareData({
                 title: title,
                 desc: text,
                 link: url,
-                imgUrl: 'https://www.childforge.com/assets/logo-wxwg9kxc.png',
+                imgUrl: imgUrl,
                 success: function () {
                 }
             })
@@ -46,7 +48,7 @@ return [
             wx.updateTimelineShareData({
                 title: title,
                 link: url,
-                imgUrl: 'https://www.childforge.com/assets/logo-wxwg9kxc.png',
+                imgUrl: imgUrl,
                 success: function () {
                 }
             })
