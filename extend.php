@@ -17,13 +17,12 @@ use Flarum\Frontend\Document;
 
 $config = app('flarum.config');
 $app = new OfficialAccount\Application($config['wechat']);
-$imageUrl = $config['wechat']['share_logo'];
 $jsConfig = $app->jssdk->buildConfig(['updateAppMessageShareData', 'updateTimelineShareData']);
 
 return [
 
     (new Extend\Frontend('forum'))
-        ->content(function (Document $document) use ($jsConfig, $imageUrl) {
+        ->content(function (Document $document) use ($jsConfig) {
             $document->head[] = '<script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="text/javascript" charset="utf-8" ></script>';
             $document->head[] = '<script> wx.config(' . $jsConfig . ')</script>';
             $document->head[] = "<script>
@@ -31,7 +30,7 @@ return [
        var title = document.title;
        var url = window.location.href;
        var text = document.querySelector('meta[name=description]').content;
-       var imgUrl = '" . $imageUrl . "'
+       var imgUrl = document.querySelector('meta[name=twitter:image]').content;
 
         wx.ready(function () {
             wx.updateAppMessageShareData({
