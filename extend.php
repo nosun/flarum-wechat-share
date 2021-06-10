@@ -29,8 +29,8 @@ return [
 
        var title = document.title;
        var url = window.location.href;
-       var text = document.querySelector('meta[name=description]').content;
-       var imgUrl = document.querySelector('meta[name=twitter:image]').content;
+       var text = document.querySelector('meta[property=\"og:description\"]').content;
+       var imgUrl = document.querySelector('meta[property=\"og:image\"]').content;
 
         wx.ready(function () {
             wx.updateAppMessageShareData({
