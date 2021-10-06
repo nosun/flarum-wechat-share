@@ -26,31 +26,32 @@ return [
             $document->head[] = '<script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="text/javascript" charset="utf-8" ></script>';
             $document->head[] = '<script> wx.config(' . $jsConfig . ')</script>';
             $document->head[] = "<script>
-
-       var title = document.title;
-       var url = window.location.href;
-       var text = document.querySelector('meta[property=\"og:description\"]').content;
-       var imgUrl = document.querySelector('meta[property=\"og:image\"]').content;
-
-        wx.ready(function () {
-            wx.updateAppMessageShareData({
-                title: title,
-                desc: text,
-                link: url,
-                imgUrl: imgUrl,
-                success: function () {
-                }
-            })
-        });
-
-        wx.ready(function () {
-            wx.updateTimelineShareData({
-                title: title,
-                link: url,
-                imgUrl: imgUrl,
-                success: function () {
-                }
-            })
+        document.addEventListener('DOMContentLoaded', function() {
+           var title = document.title;
+           var url = window.location.href;
+           var text = document.querySelector('meta[property=\"og:description\"]').content;
+           var imgUrl = document.querySelector('meta[property=\"og:image\"]').content;
+    
+            wx.ready(function () {
+                wx.updateAppMessageShareData({
+                    title: title,
+                    desc: text,
+                    link: url,
+                    imgUrl: imgUrl,
+                    success: function () {
+                    }
+                })
+            });
+    
+            wx.ready(function () {
+                wx.updateTimelineShareData({
+                    title: title,
+                    link: url,
+                    imgUrl: imgUrl,
+                    success: function () {
+                    }
+                })
+            });
         });
 
 </script>";
